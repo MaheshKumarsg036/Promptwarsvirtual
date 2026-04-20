@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartVenue AI | Intelligent Event Assistant</title>
+    <meta name="description" content="Real-time crowd management and intelligent navigation for large-scale sporting venues powered by Google Cloud.">
+    <meta name="theme-color" content="#0a0a12">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-dashboard" class="skip-link">Skip to main content</a>
+    <div class="app-container">
+        <!-- Sidebar: Alerts & Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="icon">⚡</span>
+                <h1>SmartVenue <span>AI</span></h1>
+            </div>
+
+            <section class="alert-section">
+                <div class="section-header">
+                    <h2>Live Alerts</h2>
+                    <span class="badge" id="alert-count">0</span>
+                </div>
+                <div id="alerts-list" class="alerts-container">
+                    <div class="empty-state">System online. No alerts.</div>
+                </div>
+            </section>
+
+            <section class="nav-suggestions-section">
+                <div class="section-header">
+                    <h2>Smart Routes</h2>
+                </div>
+                <div id="nav-list" class="nav-container">
+                    <!-- Suggestions will be injected here -->
+                </div>
+            </section>
+        </aside>
+
+        <main class="main-content" id="main-dashboard">
+            <header class="top-bar">
+                <div class="status-indicator" role="status" aria-live="polite">
+                    <span class="dot pulse"></span>
+                    <span id="system-status-text">Live Simulation Mode</span>
+                </div>
+                <div class="venue-info">
+                    <span class="venue-name">Wankhede Stadium</span>
+                    <span class="event-name">IPL 2026: MI vs CSK</span>
+                </div>
+                <div class="simulation-controls">
+                    <button id="toggle-realtime" class="btn primary">
+                        <span class="btn-icon">🌐</span>
+                        Real Time Value
+                    </button>
+                    <button id="trigger-spike" class="btn secondary">Simulate Spike</button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Live Map -->
+                <div class="card map-card">
+                    <div class="card-header">
+                        <h3>Venue Heatmap</h3>
+                        <div class="legend">
+                            <span class="legend-item"><span class="color low"></span> Low</span>
+                            <span class="legend-item"><span class="color medium"></span> Med</span>
+                            <span class="legend-item"><span class="color high"></span> High</span>
+                        </div>
+                    </div>
+                    <div class="map-visualization">
+                        <div id="google-map" class="map-layer obscured"></div>
+                        <div id="stadium-map" class="stadium-layout">
+                             <canvas id="heatmap-canvas"></canvas>
+                             <div class="zone-labels">
+                                 <div class="zone-label" style="top: 15%; left: 15%;">Gate A</div>
+                                 <div class="zone-label" style="top: 15%; right: 15%;">Gate B</div>
+                                 <div class="zone-label" style="top: 50%; left: 10%;">Food Court</div>
+                                 <div class="zone-label" style="top: 50%; right: 10%;">Grand Stand</div>
+                                 <div class="zone-label" style="bottom: 15%; left: 30%;">Gate C</div>
+                                 <div class="zone-label" style="bottom: 15%; right: 30%;">Exit Alpha</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wait Time Cards -->
+                <div class="stats-sidebar">
+                    <div class="card stat-card">
+                        <div class="card-header">
+                            <h3>Queue Wait Times</h3>
+                        </div>
+                        <div id="wait-times-list" class="stats-list">
+                            <!-- Cards will be injected here -->
+                        </div>
+                    </div>
+
+                    <div class="card stat-card summary-card" role="complementary" aria-label="System Metrics">
+                        <h3>System Health</h3>
+                        <div class="health-metrics">
+                            <div class="metric">
+                                <span class="label">Crowd Density</span>
+                                <span class="value" id="avg-density">42%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card stat-card AI-card" id="ai-insights">
+                        <div class="card-header">
+                            <h3>Vertex AI Insights</h3>
+                            <span class="badge ai">Google Cloud</span>
+                        </div>
+                        <div class="ai-prediction">
+                            <p class="prediction-text">Predicted peak congestion at <strong>Gate B</strong> in 15 mins based on current movement patterns.</p>
+                            <div class="confidence-bar">
+                                <div class="fill" style="width: 89%;"></div>
+                                <span class="label">89% Confidence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
